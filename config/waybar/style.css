@@ -23,7 +23,7 @@ button:hover {
 }
 
 window#waybar {
-    background-color: #111212;
+    background-color: #111212 ;
     color: #e0def4;
     transition-property: background-color;
     transition-duration: .5s;

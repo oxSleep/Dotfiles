@@ -35,6 +35,10 @@ return {
             local lua_opts = lsp_zero.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
 
+            -- Ccls
+            --require'lspconfig'.ccls.setup{}
+            require'lspconfig'.clangd.setup{}
+
             -- Rust
             local rust_tools = require('rust-tools')
 
