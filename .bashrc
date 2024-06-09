@@ -14,11 +14,4 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias la='ls -la --color=auto'
 
-if [[ -d "${HOME}/.local/bin" && ! "$PATH" == *"${HOME}/.local/bin"* ]];
-then
-  export RUSTUP_HOME="${HOME}/.local/bin"
-  export CARGO_HOME="${HOME}/.local/bin"
-  PATH="${PATH}:${CARGO_HOME}/bin"
-fi
-
 PS1='[\u@\h \W]\$ '
