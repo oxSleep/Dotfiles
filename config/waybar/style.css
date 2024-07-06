@@ -1,5 +1,4 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
 }
@@ -23,7 +22,7 @@ button:hover {
 }
 
 window#waybar {
-    background-color: #111212 ;
+    background-color: #191724 ;
     color: #e0def4;
     transition-property: background-color;
     transition-duration: .5s;
@@ -54,7 +53,6 @@ window#waybar.hidden {
 
 #clock,
 #cpu,
-#temperature,
 #network,
 #wireplumber,
 #tray {
@@ -77,10 +75,6 @@ window#waybar.hidden {
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
-}
-
-#temperature.critical {
-    background-color: transparent;
 }
 
 #clock {

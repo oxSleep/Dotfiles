@@ -16,12 +16,6 @@ export CUDA_CACHE_PATH=${XDG_CACHE_HOME}/nv
 export XCURSOR_PATH=${XDG_DATA_HOME}/icons
 export XAUTHORITY=${XDG_RUNTIME_DIR}/Xauthority
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models 
 
-
-if [[ -d "${HOME}/.local/dev/rust" && ! "$PATH" == *"${HOME}/.local/dev/rust"* ]];
-then
-  export RUSTUP_HOME="${HOME}/.local/dev/rust/.rustup"
-  export CARGO_HOME="${HOME}/.local/dev/rust/.cargo"
-  PATH="${PATH}:${CARGO_HOME}/bin"
-fi
-
+export GIT_CONFIG=~/.config/git/gitconfig

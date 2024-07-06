@@ -11,6 +11,7 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
+vim.opt.pumheight = 12
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -20,8 +21,8 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.opt.isfname:append("@-@")
 
+vim.opt.signcolumn = 'yes'
 vim.opt.updatetime = 50
 
-vim.g.mapleader = " "
 vim.opt.nu = true
 vim.opt.relativenumber = true

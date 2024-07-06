@@ -1,55 +1,58 @@
 return {
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        lazy = true,
-        config = false,
-        init = function()
-            -- Disable automatic setup, we are doing it manually
-            vim.g.lsp_zero_extend_cmp = 0
-            vim.g.lsp_zero_extend_lspconfig = 0
-        end,
-    },
-    {
-        'neovim/nvim-lspconfig',
-        cmd = 'LspInfo',
-        event = {'BufReadPre', 'BufNewFile'},
-        dependencies = {
-            {
-                'hrsh7th/cmp-nvim-lsp',
-                "simrat39/rust-tools.nvim",
+
+    "neovim/nvim-lspconfig",
+    opts = {
+        underline = false,
+        update_in_insert = false,
+        virtual_text = false,
+        severity_sort = true,
+        inlay_hints = {
+            enabled = true,
+            exclude = {},     -- filetypes for which you don't want to enable inlay hints
+        },
+        -- Enable lsp cursor word highlighting
+        document_highlight = {
+            enabled = false,
+        },
+        -- add any global capabilities here
+        capabilities = {
+            workspace = {
+                fileOperations = {
+                    didRename = true,
+                    willRename = true,
+                },
             },
         },
-        config = function()
-            -- This is where all the LSP shenanigans will live
-            local lsp_zero = require('lsp-zero')
-            lsp_zero.extend_lspconfig()
 
-            lsp_zero.on_attach(function(client, bufnr)
-                -- see :help lsp-zero-keybindings
-                -- to learn the available actions
-                lsp_zero.default_keymaps({buffer = bufnr})
-            end)
-
-            -- (Optional) Configure lua language server for neovim
-            local lua_opts = lsp_zero.nvim_lua_ls()
-            require('lspconfig').lua_ls.setup(lua_opts)
-
-            -- Ccls
-            --require'lspconfig'.ccls.setup{}
-            require'lspconfig'.clangd.setup{}
-
-            -- Rust
-            local rust_tools = require('rust-tools')
-
-            rust_tools.setup({
-                server = {
-                    on_attach = function(client, bufnr)
-                        vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions, {buffer = bufnr})
-                        lsp_zero.default_keymaps({buffer = bufnr})
-                    end
-                }
-            })
-        end
+        float = {
+            focusable = false,
+            style = "minimal",
+            border = "single",
+            source = "always",
+            header = "",
+            prefix = "",
+        },
     },
+    config = function(_, opts)
+        local servers = { "lua_ls", "clangd" }
+        local lspconfig = require("lspconfig")
+
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
+        require("lspconfig.ui.windows").default_options.border = "single"
+
+        vim.diagnostic.config(opts)
+
+        for _, server in pairs(servers) do
+            local lsp_opts= {
+                opts = opts,
+                capabilities = capabilities,
+            }
+            lspconfig[server].setup(lsp_opts)
+        end
+    end
 }
