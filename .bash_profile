@@ -17,5 +17,3 @@ export XCURSOR_PATH=${XDG_DATA_HOME}/icons
 export XAUTHORITY=${XDG_RUNTIME_DIR}/Xauthority
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models 
-
-export GIT_CONFIG=~/.config/git/gitconfig
