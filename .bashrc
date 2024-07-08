@@ -5,11 +5,14 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 export EDITOR=nvim
+export HISTSIZE=10000
+export HISTCONTROL="ignoredups:ignoreboth"
 export HISTFILE=${HOME}/.local/state/bash/bash_history
 export INPUTRC=${HOME}/.config/readline/inputrc 
+export DOTFILES=${HOME}/Brrrr/github/dotfiles/
 
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias la='ls -la --color=auto'
 
