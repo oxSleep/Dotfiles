@@ -34,7 +34,7 @@ return {
         },
     },
     config = function(_, opts)
-        local servers = { "lua_ls", "clangd" }
+        local servers = { "lua_ls", "clangd", "glsl_analyzer" }
         local lspconfig = require("lspconfig")
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()

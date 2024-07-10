@@ -22,8 +22,8 @@ button:hover {
 }
 
 window#waybar {
-    background-color: #191724 ;
-    color: #e0def4;
+    background-color: @theme_base_color ;
+    color: @theme_text_color;
     transition-property: background-color;
     transition-duration: .5s;
 }
