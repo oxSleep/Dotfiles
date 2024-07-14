@@ -22,7 +22,7 @@ button:hover {
 }
 
 window#waybar {
-    background-color: #000000 ;
+    background: rgba(0, 0, 0, 0.3);
     color: @theme_text_color;
     transition-property: background-color;
     transition-duration: .5s;
