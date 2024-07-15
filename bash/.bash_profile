@@ -17,3 +17,7 @@ export XAUTHORITY=${XDG_RUNTIME_DIR}/Xauthority
 export WINEPREFIX=${XDG_DATA_HOME}/wine/default/
 export OLLAMA_MODELS=${XDG_DATA_HOME}/ollama/models 
 export NPM_CONFIG_USERCONFIG=${XDG_CONFIG_HOME}/npm/npmrc
+
+if [ -d "$HOME/.var/" ]; then
+    export XDG_DATA_DIRS="/home/oxsleep/.local/share/flatpak/exports/share/:$XDG_DATA_DIRS"
+fi
